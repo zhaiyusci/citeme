@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CiteMe</title>
+    <style>
+    /* 父容器：横向排列，占满屏幕宽度 */
+    .horizontal-container {
+    display: flex;  /* 开启Flex布局 */
+    width: 100vw;   /* 宽度占满视口 */
+    height: 90vh;  /* 高度占满视口（可选，根据需求调整） */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    /* 子div：各占50%宽度，等高 */
+    .horizontal-item {
+    flex: 1;  /* 自动平分剩余空间（等价于 flex: 1 1 0%） */
+    height: 100%;  /* 高度占满视口（可选，根据需求调整） */
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid #ddd;  /* 边框用于可视化区分（可选） */
+    overflow-y: auto;
+    resize: none;
+    }
+
+    </style>
+  </head>
+  <body>
+
+    <div>
+      <button id="refresh-button">Refresh</button> 
+      <button id="save-button">Save JSON</button> 
+      Usage: Follow the example given.
+    </div>
+
+    <div class="horizontal-container">
+      <div id="jsoncontent" class="horizontal-item"></div> 
+      <div id="renderhtml" class="horizontal-item"> </div>
+    </div>
+
+    <script type="module" src="src/main.ts"></script>
+
+  </body>
+</html>
+

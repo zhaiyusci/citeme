@@ -110,3 +110,4 @@ editor.onDidChangeModelContent((_) => {
 
 document.getElementById("refresh-button")!.addEventListener("click", updatecontent);
 document.getElementById("save-button")!.addEventListener("click", savejson);
+document.getElementById("enable_marks")!.addEventListener("click", updatecontent);

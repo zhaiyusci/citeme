@@ -116,12 +116,14 @@ class Article {
     };
     return filterJSON(this, defaults, [])
   }
-  toHTML() {
+  toHTML(enable_marks: Boolean) {
     let authorshtml: string[] = [];
     let numberco1st = this.authors.filter((x) => x.co1st).length
     for (const entry of this.authors) {
       let namehtml = entry.toHTML();
-      namehtml += `${numberco1st > 1 && entry.co1st ? "#" : ""}${entry.cocor ? "*" : ""}`
+      if (enable_marks) {
+        namehtml += `${numberco1st > 1 && entry.co1st ? "#" : ""}${entry.cocor ? "*" : ""}`
+      }
       authorshtml.push(namehtml)
     }
     return `${authorshtml.join(", ")};<br/>${this.title};<br/><i>${this.journal}</i> <b>${this.volume}</b>, ${this.pages} (${this.year}); doi:<code>${this.doi}</code>.\n`
@@ -157,9 +159,11 @@ export function toJSON() {
 }
 
 export function toHTML(): string {
+  let enable_marks = (document.getElementById('enable_marks') as HTMLInputElement).checked;
+
   let results = "<ul id='citeme'>\n"
   for (const entry of articles) {
-    results += `<li>\n${entry.toHTML()}</li>\n`;
+    results += `<li>\n${entry.toHTML(enable_marks)}</li>\n`;
   }
   results += "</ul>\n"
   return results
